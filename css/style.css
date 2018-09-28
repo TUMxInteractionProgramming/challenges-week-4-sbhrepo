@@ -127,6 +127,7 @@ li .channel-meta {
     position: absolute;
     right: 16px;
     top: 12px;
+    font-size: 24px;
 }
 
 li img {
@@ -167,6 +168,10 @@ li.selected {
     flex-grow: 1;
 }
 
+#tab-bar button span {
+    font-size: 24px;
+}
+
 #tab-bar button.selected {
     color: #3F51B5;
     border-bottom: 4px solid #3F51B5;
@@ -185,6 +190,9 @@ li.selected {
     flex-grow: 0;
 }
 
+#emojis-button i {
+    font-size: 24px;
+}
 #emojis {
     /* #5 #smileys #emojis menu */
     /* colors and borders */
