@@ -177,7 +177,6 @@
             <p>北京</p>
             <button>+5 min.</button>
         </div>
-
     </div>
 
     <!-- #5 #smileys #insert the chat-bar -->
@@ -185,6 +184,8 @@
         <!-- <button id="emojis-button" onclick="toggleEmojis()"><img src="http://ip.lfe.mw.tum.de/sections/smile-o.png" alt="Smiley"></button> -->
         <button id="emojis-button" onclick="toggleEmojis()"><i class="far fa-smile"></i></button>
         <div id="emojis">&#x1F601; &#x1F602; &#x1F603; &#x1F604; &#x1F605; &#x1F606; &#x1F607;</div>
+        <input type="Message..." id="message-input" maxlength="140">
+        <button id="send-message" onclick="sendMessage($('#message-input').val())"><i class="fas fa-arrow-right"></i></button>
     </div>
 </div>
 

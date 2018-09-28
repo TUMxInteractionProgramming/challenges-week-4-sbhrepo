@@ -1,7 +1,15 @@
 /* #6 start the #external #action and say hello */
 console.log("App is alive");
 var currentChannel;
-var currentLocation = "kicks.pasta.steer";
+
+/* currentLocation = [longitude, latitude, what3words]; */
+var currentLocation = [40.704235, -73.917929, "kicks.pasta.steer"];
+
+var currentLocation1 = {
+    longitude:40.704235,
+    latitude:-73.917929,
+    what3words:"kicks.pasta.steer"
+};
 
 /**
  * #6 #Switcher function for the #channels name in the right app bar
@@ -58,4 +66,63 @@ function selectTab(tabId) {
 function toggleEmojis() {
     /* $('#emojis').show(); // #show */
     $('#emojis').toggle(); // #toggle
+}
+
+function Message(text) {
+    this.createdBy = currentLocation[2];
+    this.longitude = currentLocation[0];
+    this.latitude = currentLocation[1];
+    this.createdOn = new Date();
+    this.expiresOn = 15;
+    this.text = text;
+    this.own = true;
+}
+
+function sendMessage(textMessage) {
+    console.log("new message created");
+    if (textMessage == '') return;
+    var message = new Message(textMessage);
+    createMessageElement(message);
+    document.getElementById('message-input').value = ''
+}
+
+function dayOfTheWeek(date) {
+    var weekday = new Array(7);
+    weekday[0] =  "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+    return weekday[date.getDay()];
+}
+
+function month(date) {
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+    return month[date.getMonth()];
+}
+
+function addZero(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+function createMessageElement(messageObject) {
+    var outputDate = dayOfTheWeek(messageObject.createdOn) + ', ' + month(messageObject.createdOn) + ' ' + messageObject.createdOn.getDate() + 'th, ' + addZero(messageObject.createdOn.getHours()) +':'+ addZero(messageObject.createdOn.getMinutes());
+    var message_string = '<div class="message"><h3><a href=":createdBy:" target="_blank"><strong>'+messageObject.createdBy+'</strong></a>'+outputDate+' <em>'+messageObject.expiresOn+' min. left</em></h3><p>'+messageObject.text+'</p><button>+5 min.</button></div>';
+    $('<div>').html(message_string).addClass('text-white').appendTo('#messages');
 }
